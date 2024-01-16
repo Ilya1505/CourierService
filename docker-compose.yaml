@@ -1,0 +1,38 @@
+version: '3.7'
+
+volumes:
+  postgres-data:
+
+networks:
+  net:
+
+services:
+
+  # PG
+  postgres_db:
+    container_name: postgres_db
+    image: postgres:13.3
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    restart: always
+    env_file: .env
+    ports:
+      - "5432:5432"
+    networks:
+      - net
+
+  # Backend
+  backend:
+    container_name: backend
+    build:
+      dockerfile: Dockerfile
+      context: .
+    restart: always
+    env_file: .env
+    command: bash ./start.sh
+    depends_on:
+      - postgres_db
+    networks:
+      - net
+    ports:
+      - "8000:8000"
