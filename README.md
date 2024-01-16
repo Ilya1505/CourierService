@@ -95,7 +95,7 @@ GET /courier/get_districts
 ### 2) Склонируйте репозиторий:
 
 ``` 
-git clone https://path/to/git
+git clone https://github.com/Ilya1505/CourierService.git
 ```
 
 ### 3) Настройка файла .env
