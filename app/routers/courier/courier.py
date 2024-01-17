@@ -52,9 +52,7 @@ async def create_courier(
     # Получение списка всех районов системы
     all_district = await crud.district.get_all(session=session)
 
-    district_name = list()
-    for district in all_district:
-        district_name.append(district.name)
+    district_name = list(map(lambda district: district.name, all_district))
 
     # Проверка что данные от пользователя корректны
     for district_new in courier_in.districts:
