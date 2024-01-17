@@ -45,6 +45,7 @@ class CRUDCourier:
             district_name: str,
             session: AsyncSession,
     ):
+        # Зпрос на получение всех курьеров, из определенного района
         query = select(models.Courier).options(selectinload(models.Courier.orders),
                                                selectinload(models.Courier.districts)) \
             .join(models.CourierXDistrict, models.CourierXDistrict.courier_sid == models.Courier.sid) \

@@ -22,18 +22,21 @@ async def create_order(
     :param session: session with db
     :return: order object
     """
+    # Получение курьеров из необходимого района
     couriers = await crud.courier.get_multi(district_name=order_new.district, session=session)
 
+    # Поиск свободного курьера из полученных
     for courier in couriers:
         flag = True
         for order in courier.orders:
             if order.status == '1':
                 flag = False
+        # Если курьер свободен
         if flag:
+            # Поиск необходимого района у подходящего курьера
             for district in courier.districts:
-                print(district.name)
-                print(order_new.name)
                 if district.name == order_new.district:
+                    # Создание заказа
                     order_obj = models.Order(
                             name=order_new.name,
                             courier_sid=courier.sid,
@@ -56,6 +59,7 @@ async def get_order_by_sid(
     :param session: session with db
     :return: order object
     """
+    # Получение заказа по sid
     order = await crud.order.get_by_sid(sid=sid, session=session)
     if not order:
         raise HTTPException(status_code=400, detail="Неккоректный sid заказа")
@@ -73,19 +77,25 @@ async def finish_order(
     :param session: session with db
     :return: order object
     """
+    # Получение заказа по sid
     order = await crud.order.get_by_sid(sid=sid, session=session, custom_options=selectinload(models.Order.courier))
     if not order:
         raise HTTPException(status_code=400, detail="Неккоректный sid заказа")
     elif order.status == '2':
         raise HTTPException(status_code=400, detail="Заказ завершен")
 
+    # Если у курьера это первый заказ
     if order.courier.number_completed == 0:
+        # среднее время = текущее - время начала заказа
         order.courier.avg_order_complete_time = datetime.now() - order.registration_at
     else:
+
         total_time = order.courier.avg_order_complete_time * order.courier.number_completed
+        # Среднее время =  (общее время + (текущее - время начала заказа)) / количество выполненных заказов + 1
         order.courier.avg_order_complete_time \
             = (total_time + (datetime.now() - order.registration_at)) / (order.courier.number_completed + 1)
 
+    # avg_day_orders = (количество выполненных заказов + 1) / количество отработанных дней курьером
     order.courier.avg_day_orders \
         = (order.courier.number_completed + 1) / ((datetime.now() - order.registration_at).days + 1)
 

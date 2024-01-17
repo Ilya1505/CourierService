@@ -48,19 +48,24 @@ async def create_courier(
     :param session: session with db
     :return: courier object
     """
+
+    # Получение списка всех районов системы
     all_district = await crud.district.get_all(session=session)
 
     district_name = list()
     for district in all_district:
         district_name.append(district.name)
 
+    # Проверка что данные от пользователя корректны
     for district_new in courier_in.districts:
         if district_new not in district_name:
             raise HTTPException(status_code=400, detail="Неккоректное имя района")
 
+    # Создание модели курьера
     courier_obj = models.Courier(name=courier_in.name)
     await crud.courier.create(courier_obj=courier_obj, session=session, with_commit=False)
 
+    # Создание моделей courier_x_district
     for district in all_district:
         if district.name in courier_in.districts:
             courier_x_district_obj = models.CourierXDistrict(
@@ -94,6 +99,7 @@ async def get_courier_by_sid(
     :param session: session with db
     :return: dict of courier object
     """
+    # Получение курьера по sid
     courier = await crud.courier.get_by_sid(
         sid=sid,
         session=session,
