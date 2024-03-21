@@ -8,17 +8,34 @@ on:
 
 jobs:
 
-  run_tests:
-
+  tests:
     runs-on: ubuntu-latest
-
+    services:
+      postgres:
+        image: postgres:15
+        ports: 
+          - "5432:5432"
+        env: 
+          POSTGRES_DB: courier_db
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: 111
+    env:
+      POSTGRES_DB: courier_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 111
+      RAILS_ENV: tests
+      DATABASE_URL: "postgres://postgres:111@localhost:5432/courier_db"
     steps:
-    - uses: actions/checkout@main
-    - uses: actions/setup-python@v1
+    - name: Checkout code
+      uses: actions/checkout@v3
+    - name: Install python
+      uses: actions/setup-python@v1
       with:
            python-version: '3.11'
            architecture: 'x64'
     - name: Install requirements
       run: pip install -r requirements.txt
+    - name: Upgrade DB
+      run: alembic upgrade head
     - name: Run tests
       run: pytest
