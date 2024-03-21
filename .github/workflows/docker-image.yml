@@ -16,7 +16,7 @@ jobs:
         ports: 
           - "5432:5432"
         env: 
-          POSTGRES_DB: ourier_db_test
+          POSTGRES_DB: courier_db_test
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: 111
     env:
