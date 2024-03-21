@@ -25,7 +25,7 @@ jobs:
       POSTGRES_PASSWORD: 111
       RAILS_ENV: tests
       DATABASE_URL: "postgres://postgres:111@localhost:5432/courier_db"
-      POSTGRES_DB_TEST: courier_db_test
+      POSTGRES_DB_TEST: courier_db
       POSTGRES_USER_TEST: postgres
       POSTGRES_PASSWORD_TEST: 111
       POSTGRES_HOST_TEST: localhost
