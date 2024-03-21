@@ -20,7 +20,7 @@ jobs:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: 111
     env:
-      POSTGRES_DB: ourier_db
+      POSTGRES_DB: courier_db
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 111
       RAILS_ENV: tests
