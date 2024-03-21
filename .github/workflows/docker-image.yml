@@ -16,15 +16,15 @@ jobs:
         ports: 
           - "5432:5432"
         env: 
-          POSTGRES_DB: courier_db
+          POSTGRES_DB: ourier_db_test
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: 111
     env:
-      POSTGRES_DB: courier_db
+      POSTGRES_DB: ourier_db_test
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 111
       RAILS_ENV: tests
-      DATABASE_URL: "postgres://postgres:111@localhost:5432/courier_db"
+      DATABASE_URL: "postgres://postgres:111@localhost:5432/ourier_db_test"
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
