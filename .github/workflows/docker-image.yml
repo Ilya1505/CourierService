@@ -44,3 +44,26 @@ jobs:
       run: alembic upgrade head
     - name: Run tests
       run: pytest
+  deploy:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout code
+          uses: actions/checkout@v3
+        - name: Install Ruby and gems
+          uses: actions/setup-python@v1
+          with:
+            python-version: '3.11'
+            architecture: 'x64'
+        - name: Run command on remote server
+          uses: D3rHase/ssh-command-action@v0.2.2
+          with:
+            host: ${{secrets.SSH_HOST}}
+            user: ${{secrets.SSH_USER}}
+            private_key: ${{secrets.SSH_PRIVATE_KEY}}
+            command: |
+              cd ${{ secrets.PROJECT_FOLDER }};
+              git checkout main;
+              git pull;
+              docker-compose --file docker-compose.prod.yml down;
+              docker-compose --file docker-compose.prod.yml up -d;
+              docker system prune --all --force;
