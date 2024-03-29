@@ -63,4 +63,5 @@ jobs:
             password: tj6yhl
             script: |
               cd test_deploy/CourierService
+              cmod +x deploy.sh
               bash deploy.sh
