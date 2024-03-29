@@ -58,11 +58,11 @@ jobs:
         - name: Run command on remote server
           uses: appleboy/ssh-action@master
           with:
-            host: 90.188.20.234
-            port: 3683
-            username: danil
+            host: ${{secrets.HOST}}
+            port: ${{secrets.PORT}}
+            username: ${{secrets.USER_NAME}}
             password: ${{secrets.USER_PWD}}
             script: |
-              cd test_deploy/CourierService
+              cd ${{secrets.PROJECT_DIR}}
               git pull
               bash deploy.sh
