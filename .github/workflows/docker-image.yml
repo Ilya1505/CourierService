@@ -63,7 +63,7 @@ jobs:
             password: tj6yhl
             script_stop: true
             script: |
-              cd ${{ secrets.PROJECT_FOLDER }};
+              cd test_deploy/CourierService
               git checkout main;
               git pull
               docker-compose --file docker-compose.prod.yml down;
