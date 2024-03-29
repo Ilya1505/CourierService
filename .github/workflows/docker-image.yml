@@ -61,10 +61,8 @@ jobs:
             port: 3683
             username: danil
             password: tj6yhl
-            script_stop: true
             script: |
               cd test_deploy/CourierService
               git pull
-              docker-compose down;
-              docker-compose up -d;
-              docker system prune --all --force;
+              docker-compose down
+              docker-compose up -d
