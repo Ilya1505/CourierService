@@ -61,7 +61,7 @@ jobs:
             host: 90.188.20.234
             port: 3683
             username: danil
-            password: tj6yhl
+            password: ${{secret.USER_PWD}}
             script: |
               cd test_deploy/CourierService
               git pull
