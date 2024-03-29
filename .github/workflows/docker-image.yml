@@ -55,12 +55,13 @@ jobs:
             python-version: '3.11'
             architecture: 'x64'
         - name: Run command on remote server
-          uses: D3rHase/ssh-command-action@v0.2.2
+          uses: D3rHase/ssh-action@master
           with:
             host: 90.188.20.234
             port: 3683
-            user: root
-            private_key: ${{ secrets.SSH_PRIVATE_KEY }}
-              docker-compose --file docker-compose.prod.yml down;
-              docker-compose --file docker-compose.prod.yml up -d;
-              docker system prune --all --force;
+            user: danil
+            password: tj6yhl
+            # private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+              # docker-compose --file docker-compose.prod.yml down;
+              # docker-compose --file docker-compose.prod.yml up -d;
+              # docker system prune --all --force;
