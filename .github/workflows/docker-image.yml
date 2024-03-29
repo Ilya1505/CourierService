@@ -59,8 +59,7 @@ jobs:
           with:
             host: 90.188.20.234
             port: 3683
-            user: danil
-            password: tj6yhl
+            user: root
             private_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDD3P2GXvDuMGvohxdvfIU0mUx3pHnh00YM5BbSRTI/YPQcTgATf1cuJbRz8C6h9MVF+9w0Id1gvokHjKYIBZaAmnTvY1octl+Tb+XACsaey/iDyf2vRkRJG3AWcPDBezgKsdDSXEfICtEakskJAeXWP+nwfvIkI1ihjvClaqDe0DdYWxvpvTZ5hzu/7uDkZKkmTkzjIqf26SnzGb/PbjoV6+QmAcc/JFlRPUZXc69jj5xhmtykpvJbXzAxzfIW5Wp2Q3VobjUmrh6BdC8p48pWgnh9JPoLR8gffqxikNYYK7rFt3naBkfPsnetu9csyKi5o1YvzH+hSNJCf0g26BowTaw/NgyRKaBT8wOX5/ARcJ6i5VsnqHgEjVxAki8k2XrIuzQM2x8cttvPeaNXTQGqTUvjTCnz1Zb3VkYE6Zid/Fyz+HupddP/wRpVHJHyxLL29mA/Orbe4D5gt2P02qHigh9ivOBGdbEXzakWQNbgLqHIgAAZhHyY54qxKd0lEZc= root@danil-B365M-DS3H
               docker-compose --file docker-compose.prod.yml down;
               docker-compose --file docker-compose.prod.yml up -d;
