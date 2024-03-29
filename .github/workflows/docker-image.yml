@@ -61,4 +61,6 @@ jobs:
             port: 3683
             username: danil
             password: tj6yhl
-            script: bash deploy.sh
+            script: |
+              cd test_deploy/CourierService
+              bash deploy.sh
