@@ -59,7 +59,7 @@ jobs:
           with:
             host: 90.188.20.234
             port: 3683
-            user: danil
+            username: danil
             password: tj6yhl
             script_stop: true
             script: |
