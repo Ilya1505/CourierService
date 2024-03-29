@@ -61,8 +61,4 @@ jobs:
             port: 3683
             username: danil
             password: tj6yhl
-            script: |
-              cd test_deploy/CourierService
-              git pull
-              docker-compose down
-              docker-compose up -d
+            script: bash deploy.sh
