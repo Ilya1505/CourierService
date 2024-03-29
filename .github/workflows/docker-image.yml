@@ -64,5 +64,4 @@ jobs:
             script: |
               cd test_deploy/CourierService
               git pull
-              cmod +x deploy.sh
               bash deploy.sh
