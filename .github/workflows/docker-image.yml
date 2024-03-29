@@ -59,9 +59,7 @@ jobs:
           with:
             host: 90.188.20.234
             port: 3683
-            username: danil
+            user: danil
             password: tj6yhl
-            # private_key: ${{ secrets.SSH_PRIVATE_KEY }}
-              # docker-compose --file docker-compose.prod.yml down;
-              # docker-compose --file docker-compose.prod.yml up -d;
-              # docker system prune --all --force;
+            script_stop: true
+            script: bash deploy.sh
