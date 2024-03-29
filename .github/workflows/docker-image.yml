@@ -55,7 +55,7 @@ jobs:
             python-version: '3.11'
             architecture: 'x64'
         - name: Run command on remote server
-          uses: D3rHase/ssh-action@master
+          uses: appleboy/ssh-action@master
           with:
             host: 90.188.20.234
             port: 3683
