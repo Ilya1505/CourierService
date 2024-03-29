@@ -1,4 +1,4 @@
 #!/bin/env/bash
 
 alembic upgrade head
-python main.py
+python3 main.py
